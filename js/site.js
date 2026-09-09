@@ -40,6 +40,11 @@ function p96Init() {
     P96.renderLeaders(document.getElementById("leaders"), people.filter(function (p) { return !p.den; }), false);
     P96.fillDenLeaders(people);
   });
+
+  // Helpful Links: from the Links tab if configured; otherwise the links written in index.html stay.
+  P96.loadLinks(cfg.linksCsvUrl, "public").then(function (links) {
+    if (links.length) P96.renderLinks(document.getElementById("public-links"), links);
+  });
 }
 
 // Small shared helpers, also used by members.js
@@ -96,6 +101,31 @@ window.P96 = {
       }
       d.innerHTML = html;
       el.appendChild(d);
+    });
+  },
+
+  // Returns [{title, url, note, show}] filtered to rows whose Show column is `where` or "both"
+  loadLinks: function (csvUrl, where) {
+    if (!csvUrl) return Promise.resolve([]);
+    return fetch(csvUrl, { cache: "no-store" }).then(function (r) {
+      if (!r.ok) throw new Error("HTTP " + r.status);
+      return r.text();
+    }).then(function (t) {
+      return P96.parseCsv(t).filter(function (r) {
+        var show = (r.show || "both").toLowerCase();
+        return r.title && r.url && (show === where || show === "both");
+      });
+    }).catch(function (e) { console.warn("Links sheet unavailable:", e.message); return []; });
+  },
+
+  renderLinks: function (el, links) {
+    if (!el) return;
+    el.innerHTML = "";
+    links.forEach(function (l) {
+      var a = document.createElement("a");
+      a.href = l.url; a.target = "_blank"; a.rel = "noopener";
+      a.innerHTML = P96.esc(l.title) + (l.note ? "<small>" + P96.esc(l.note) + "</small>" : "");
+      el.appendChild(a);
     });
   },
 

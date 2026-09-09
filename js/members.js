@@ -91,21 +91,14 @@
       document.getElementById("docs-heading").hidden = true;
     }
 
-    // Pinned links (external forms and pages that aren't files in the folder)
-    var list = document.getElementById("docs");
-    list.innerHTML = "";
-    (d.documents || []).forEach(function (doc) {
-      var a = document.createElement("a");
-      a.href = doc.url; a.target = "_blank"; a.rel = "noopener";
-      a.innerHTML = P96.esc(doc.title) + (doc.note ? "<small>" + P96.esc(doc.note) + "</small>" : "");
-      list.appendChild(a);
-      if (doc.embedUrl) {
-        var det = document.createElement("details"); det.className = "embed";
-        det.innerHTML = "<summary>View here</summary>";
-        var f = document.createElement("iframe"); f.className = "doc-frame"; f.loading = "lazy"; f.src = doc.embedUrl; f.title = doc.title;
-        det.appendChild(f); list.appendChild(det);
-      }
+    // Other links: the Links tab of the Site Content sheet (rows marked members or both).
+    // Falls back to a "documents" list in private.json if the sheet isn't configured.
+    var list = document.getElementById("docs"), heading = document.getElementById("docs-heading");
+    var cfgLinks = (window.PACK96 && window.PACK96.linksCsvUrl) || "";
+    P96.loadLinks(cfgLinks, "members").then(function (links) {
+      if (!links.length) links = (d.documents || []).map(function (x) { return { title: x.title, url: x.url, note: x.note }; });
+      if (links.length) { P96.renderLinks(list, links); list.hidden = false; heading.hidden = false; }
+      else { list.hidden = true; heading.hidden = true; }
     });
-    if (!(d.documents || []).length) { list.hidden = true; document.getElementById("docs-heading").hidden = true; }
   }
 })();

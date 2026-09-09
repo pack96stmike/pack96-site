@@ -7,6 +7,10 @@ window.PACK96 = {
   // Columns: Name, Role, Den. Leave "" to use fallbackLeaders below.
   leadersCsvUrl: "https://docs.google.com/spreadsheets/d/e/2PACX-1vQChEHV8nWW0phvIWo34ymJfOReKDjtM9v54IvoU0rqjvNILQKHZ6dgdXrh6NAzL37bKpUv78GQjuFz/pub?gid=0&single=true&output=csv",
 
+  // The "Links" tab of the same sheet, published as CSV. Columns: Title, URL, Note, Show (public / members / both).
+  // Feeds "Helpful Links" on the homepage and "Other links" on the members page. Leave "" to use the links written in index.html.
+  linksCsvUrl: "",
+
   // Shown when leadersCsvUrl is empty or can't be reached. Keep it roughly current.
   fallbackLeaders: [
     { name: "Greg Bredestege", role: "Cubmaster", den: "" },
