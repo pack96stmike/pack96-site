@@ -193,7 +193,7 @@ The site is designed to change hands without rebuilding anything. Hand over:
 1. **The pack96webadmin Google account.** Change its recovery email and phone to the new person. This account owns the Drive folder, calendar, photo album, and the Cloudflare registration.
 2. **The pack96stmike GitHub account** login. Confirm the new person can sign in.
 3. **The Cloudflare account** (signed in with pack96webadmin). Confirm auto-renew and the payment method.
-4. **The Drive folder *Pack 96 Website***, including `private.json`.
+4. **The Drive folder** *Pack 96 Website*, including `private.json`.
 5. **This guide.**
 6. Then change the pack password (Section 4.1) so the outgoing admin's copy is retired.
 
