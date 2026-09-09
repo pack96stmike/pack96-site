@@ -33,7 +33,7 @@ The idea: **day-to-day changes happen in Google (calendar, sheet, docs, album) a
 
 **Add a document** → drop it in the **Documents** subfolder of *Pack 96 Website* on Drive. It appears on the members page on its own. That subfolder is shared "Anyone with the link can view", so keep `private.json` and anything with family contact details *outside* it (the parent folder is fine).
 
-**Add or change a link** (council, AHMR form, Scoutbook, anything that's a web page rather than a file) → edit the *Links* tab of the Site Content sheet. Columns: Title, URL, Note, Show. Show is `public` (homepage Helpful Links), `members` (members page "Other links"), or `both`. The Links tab is published like the others, so don't put genuinely private URLs there (the photo album stays in `private.json`).
+**Add or change a link** (council, AHMR form, Scoutbook, anything that's a web page rather than a file) → edit the *Links* tab of the Site Content sheet. Columns: Title, URL, Note, Show. Show is `public` (homepage Helpful Links), `members` (members page "Other links"), or `both`. The site reads the Links tab live through the sheet's "Anyone with the link can view" sharing (the other two tabs use Publish to the web; either way works). Don't put genuinely private URLs there; the photo album stays in `private.json`.
 
 **Edit site copy** → edit `index.html` in GitHub (pencil icon works fine for small changes) and commit.
 

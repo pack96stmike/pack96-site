@@ -9,7 +9,7 @@ window.PACK96 = {
 
   // The "Links" tab of the same sheet, published as CSV. Columns: Title, URL, Note, Show (public / members / both).
   // Feeds "Helpful Links" on the homepage and "Other links" on the members page. Leave "" to use the links written in index.html.
-  linksCsvUrl: "",
+  linksCsvUrl: "https://docs.google.com/spreadsheets/d/1_OsXz7GpjZwL9FG03W8O4606xMFEXmhlxu_j6GlfBTs/gviz/tq?tqx=out:csv&sheet=Links",
 
   // Shown when leadersCsvUrl is empty or can't be reached. Keep it roughly current.
   fallbackLeaders: [
