@@ -7,6 +7,8 @@ Cub Scout Pack 96, St. Michael School, Sharonville. A plain static site: two HTM
 
 Hosted on GitHub Pages from this repository (`pack96stmike/pack96-site`, branch `main`) at **https://pack96.com** (domain registered at Cloudflare under the pack96webadmin account; the `CNAME` file in this repo tells GitHub the domain). Push to `main` and the site updates within a minute or two.
 
+**Non-technical guide for leaders and handoff:** `docs/how-to-update-the-website.md` (also in the Pack 96 Website Drive folder as a Google Doc).
+
 ## Where things live
 
 | What | Where | Who can edit |
