@@ -82,7 +82,16 @@
       if (!d.contactsCsvUrl) document.getElementById("contacts-note").textContent = "Contact sheet not connected yet; showing names only.";
     });
 
-    // Documents
+    // Documents folder (a link-shared Google Drive folder; lists itself and updates on its own)
+    if (d.documentsFolderId) {
+      document.getElementById("docs-folder").src = "https://drive.google.com/embeddedfolderview?id=" + encodeURIComponent(d.documentsFolderId) + "#list";
+      document.getElementById("docs-folder-link").href = "https://drive.google.com/drive/folders/" + encodeURIComponent(d.documentsFolderId);
+    } else {
+      document.getElementById("docs-folder-wrap").hidden = true;
+      document.getElementById("docs-heading").hidden = true;
+    }
+
+    // Pinned links (external forms and pages that aren't files in the folder)
     var list = document.getElementById("docs");
     list.innerHTML = "";
     (d.documents || []).forEach(function (doc) {
@@ -97,6 +106,6 @@
         det.appendChild(f); list.appendChild(det);
       }
     });
-    if (!(d.documents || []).length) list.innerHTML = '<p class="note">No documents yet.</p>';
+    if (!(d.documents || []).length) { list.hidden = true; document.getElementById("docs-heading").hidden = true; }
   }
 })();

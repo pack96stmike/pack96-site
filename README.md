@@ -31,7 +31,7 @@ The idea: **day-to-day changes happen in Google (calendar, sheet, docs, album) a
 
 **Post an announcement** → edit the *Announcements* Google Doc. It is embedded on the members page.
 
-**Add a document** → put it in the Drive folder, then add a line to `private.json` under `documents` and re-encrypt (see below). Documents with contact info stay on the members page.
+**Add a document** → drop it in the **Documents** subfolder of *Pack 96 Website* on Drive. It appears on the members page on its own. That subfolder is shared "Anyone with the link can view", so keep `private.json` and anything with family contact details *outside* it (the parent folder is fine). External pages that aren't files (like the AHMR form page) are listed under `documents` in `private.json`; changing those means re-encrypting (see below).
 
 **Edit site copy** → edit `index.html` in GitHub (pencil icon works fine for small changes) and commit.
 
@@ -57,7 +57,7 @@ Done once by the webadmin; kept here so the next webadmin knows what exists.
 
 - [ ] GitHub repo `pack96stmike/pack96-site`, public. Settings → Pages → Source: *Deploy from a branch*, branch `main`, folder `/ (root)`.
 - [ ] Google Calendar "Pack 96" on pack96webadmin: Settings → *Access permissions for events* → check **Make available to public**, "See all event details". Copy the **Calendar ID** from *Integrate calendar* into `private.json`. Share edit rights with the Cubmaster and committee chair.
-- [ ] Drive folder *Pack 96 Website* on pack96webadmin, shared with the committee as editors.
+- [ ] Drive folder *Pack 96 Website* on pack96webadmin, shared with the committee as editors. Inside it a **Documents** subfolder shared *Anyone with the link → Viewer*; its ID (the long string at the end of the folder URL) goes in `private.json` as `documentsFolderId`.
 - [ ] Sheet *Pack 96 Site Content* with tabs `Leadership` and `Contacts`. File → Share → **Publish to the web** → pick the tab → *Comma-separated values (.csv)* → Publish. Leadership CSV link goes in `config.js`; Contacts CSV link goes in `private.json`.
 - [ ] Doc *Announcements*: File → Share → Publish to the web → Embed → copy the `src` URL into `private.json` as `announcementsEmbedUrl`.
 - [ ] Google Photos shared album "Pack 96", link-sharing on, collaboration on. Link into `private.json`.
