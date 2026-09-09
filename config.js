@@ -1,0 +1,24 @@
+// Pack 96 site: PUBLIC configuration.
+// Anything here is visible to anyone. Private links (calendar, photos, contacts) go in private.json -> private.enc instead.
+window.PACK96 = {
+  packEmail: "pack96sms@gmail.com",
+
+  // The "Leadership" tab of the Pack 96 Site Content Google Sheet, published to the web as CSV.
+  // Columns: Name, Role, Den. Leave "" to use fallbackLeaders below.
+  leadersCsvUrl: "",
+
+  // Shown when leadersCsvUrl is empty or can't be reached. Keep it roughly current.
+  fallbackLeaders: [
+    { name: "Greg Bredestege", role: "Cubmaster", den: "" },
+    { name: "Open", role: "Assistant Cubmaster", den: "" },
+    { name: "Karen Berndt", role: "Committee Chair & Chartered Organization Rep", den: "" },
+    { name: "Lisa Barrow", role: "Treasurer", den: "" },
+    { name: "Carol Rose", role: "Fundraising Coordinator", den: "" },
+    { name: "David Hoff", role: "Committee Member", den: "" },
+    { name: "Open", role: "Den Leader", den: "Lions" },
+    { name: "Karen Berndt", role: "Den Leader", den: "Tigers" },
+    { name: "Paul Rose", role: "Den Leader", den: "Wolves" },
+    { name: "Jonathan Kolk", role: "Den Leader", den: "Bears" },
+    { name: "Chris Berndt", role: "Den Leader", den: "Webelos" }
+  ]
+};

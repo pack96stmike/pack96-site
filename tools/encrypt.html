@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pack 96 · Encrypt members data</title>
+<style>
+  body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;max-width:860px;margin:30px auto;padding:0 20px;color:#222;line-height:1.5}
+  h1{color:#003366}
+  textarea{width:100%;min-height:320px;font-family:Consolas,Menlo,monospace;font-size:13px;padding:10px;border:1px solid #ccc;border-radius:6px}
+  input[type=password]{padding:10px;border:1px solid #ccc;border-radius:6px;font-size:1rem;width:260px}
+  button{background:#003366;color:#fff;border:0;padding:10px 18px;border-radius:6px;font-weight:700;cursor:pointer;font-size:1rem}
+  button.secondary{background:#fff;color:#003366;border:2px solid #003366}
+  .row{margin:14px 0}
+  .ok{color:#166534;font-weight:600}.bad{color:#991b1b;font-weight:600}
+  ol li{margin-bottom:6px}
+  code{background:#eef;padding:1px 4px;border-radius:3px}
+  details{margin-top:24px}
+</style>
+</head>
+<body>
+<h1>Encrypt the members data</h1>
+<p>This page runs entirely on your computer. Nothing is uploaded anywhere. It turns <code>private.json</code> (the calendar, photo album, contacts sheet, and document links) into <code>private.enc</code>, which is what gets published. Only someone with the pack password can read it.</p>
+<ol>
+  <li>Paste the contents of <code>private.json</code> below (kept in the Pack 96 Website folder on Google Drive, never in GitHub).</li>
+  <li>Type the pack password twice.</li>
+  <li>Click <strong>Encrypt</strong>, then <strong>Download private.enc</strong>, and replace the <code>private.enc</code> file in the site folder.</li>
+  <li>Commit and push. The site updates in about a minute.</li>
+</ol>
+
+<div class="row"><label>private.json<br><textarea id="json">{
+  "calendarId": "PASTE-CALENDAR-ID@group.calendar.google.com",
+  "photosUrl": "https://photos.app.goo.gl/PASTE-ALBUM-LINK",
+  "contactsCsvUrl": "https://docs.google.com/spreadsheets/d/e/PASTE/pub?gid=0&single=true&output=csv",
+  "announcementsEmbedUrl": "",
+  "notes": "",
+  "documents": [
+    { "title": "2026-27 Family Handout", "url": "https://docs.google.com/document/d/PASTE/edit", "note": "Leadership, dues policy, expectations" },
+    { "title": "Annual Health & Medical Record (AHMR)", "url": "https://www.scouting.org/health-and-safety/ahmr/", "note": "Parts A, B1, B2 to your den leader before the first campout" }
+  ]
+}</textarea></label></div>
+<div class="row">
+  <input type="password" id="pw1" placeholder="Pack password">
+  <input type="password" id="pw2" placeholder="Repeat password">
+</div>
+<div class="row">
+  <button id="go">Encrypt</button>
+  <a id="dl" hidden><button class="secondary">Download private.enc</button></a>
+  <span id="msg"></span>
+</div>
+
+<details>
+  <summary>Check an existing private.enc</summary>
+  <div class="row"><input type="file" id="file" accept=".enc,.json,.txt"> <input type="password" id="pw3" placeholder="Pack password"> <button id="check" class="secondary">Decrypt &amp; show</button></div>
+  <pre id="out" style="white-space:pre-wrap;background:#f6f6f6;padding:10px;border-radius:6px"></pre>
+</details>
+
+<script src="../js/crypto.js"></script>
+<script>
+(function () {
+  var msg = document.getElementById("msg"), dl = document.getElementById("dl");
+  document.getElementById("go").addEventListener("click", function () {
+    msg.className = ""; msg.textContent = ""; dl.hidden = true;
+    var pw1 = document.getElementById("pw1").value, pw2 = document.getElementById("pw2").value, text = document.getElementById("json").value;
+    try { JSON.parse(text); } catch (e) { msg.className = "bad"; msg.textContent = "That isn't valid JSON: " + e.message; return; }
+    if (pw1.length < 6) { msg.className = "bad"; msg.textContent = "Use a password of at least 6 characters."; return; }
+    if (pw1 !== pw2) { msg.className = "bad"; msg.textContent = "Passwords don't match."; return; }
+    P96Crypto.encrypt(pw1, text).then(function (blob) {
+      var url = URL.createObjectURL(new Blob([blob], { type: "application/json" }));
+      dl.href = url; dl.download = "private.enc"; dl.hidden = false;
+      msg.className = "ok"; msg.textContent = "Encrypted. Download it and replace private.enc in the site folder.";
+    });
+  });
+  document.getElementById("check").addEventListener("click", function () {
+    var f = document.getElementById("file").files[0], pw = document.getElementById("pw3").value, out = document.getElementById("out");
+    if (!f) { out.textContent = "Choose a private.enc file first."; return; }
+    f.text().then(function (blob) { return P96Crypto.decrypt(pw, blob); })
+      .then(function (t) { out.textContent = JSON.stringify(JSON.parse(t), null, 2); })
+      .catch(function () { out.textContent = "Couldn't decrypt: wrong password or damaged file."; });
+  });
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pack 96 Members</title>
+<meta name="robots" content="noindex">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='16' fill='%23003366'/%3E%3Cpath fill='%23ffd100' d='M50 5c-3 15-15 22-15 35 0 8 6 13 12 15v10h-8c-2 0-3 1-3 3v5h28v-5c0-2-1-3-3-3h-8V55c6-2 12-7 12-15C65 27 53 20 50 5zM30 50c-10 5-18 2-25 10 12 2 18-2 25-5v-5zM70 50c10 5 18 2 25 10-12 2-18-2-25-5v-5zM44 78h12v12c0 3-2 5-6 5s-6-2-6-5V78z'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<nav class="nav" id="nav">
+  <div class="wrap">
+    <a class="brand" href="index.html"><svg viewBox="0 0 100 100" aria-hidden="true"><path d="M50 5c-3 15-15 22-15 35 0 8 6 13 12 15v10h-8c-2 0-3 1-3 3v5h28v-5c0-2-1-3-3-3h-8V55c6-2 12-7 12-15C65 27 53 20 50 5zM30 50c-10 5-18 2-25 10 12 2 18-2 25-5v-5zM70 50c10 5 18 2 25 10-12 2-18-2-25-5v-5zM44 78h12v12c0 3-2 5-6 5s-6-2-6-5V78z"/></svg>PACK 96</a>
+    <button class="nav-toggle" aria-label="Menu" aria-expanded="false" onclick="document.getElementById('nav').classList.toggle('open');this.setAttribute('aria-expanded',document.getElementById('nav').classList.contains('open'))">&#9776;</button>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="index.html#about">About</a>
+      <a href="index.html#dens">Dens</a>
+      <a href="index.html#leadership">Leadership</a>
+      <a href="index.html#join">Join</a>
+      <a href="#calendar" class="active">Calendar</a>
+    </div>
+    <a class="nav-cta" href="#" id="logout">Log out</a>
+  </div>
+</nav>
+
+<header class="hero small">
+  <div class="wrap">
+    <h1>Pack 96 Members</h1>
+    <p class="sub" style="margin-bottom:0">Calendar, photos, contacts, and documents for Pack 96 families.</p>
+  </div>
+</header>
+
+<div class="gate" id="gate">
+  <svg viewBox="0 0 100 100" aria-hidden="true"><path d="M50 5c-3 15-15 22-15 35 0 8 6 13 12 15v10h-8c-2 0-3 1-3 3v5h28v-5c0-2-1-3-3-3h-8V55c6-2 12-7 12-15C65 27 53 20 50 5zM30 50c-10 5-18 2-25 10 12 2 18-2 25-5v-5zM70 50c10 5 18 2 25 10-12 2-18-2-25-5v-5zM44 78h12v12c0 3-2 5-6 5s-6-2-6-5V78z"/></svg>
+  <h2>Pack Member Login</h2>
+  <p>Enter the pack password to see the calendar, photos, and contacts.</p>
+  <form id="gate-form">
+    <input type="password" id="pw" placeholder="Pack password" autocomplete="current-password" autofocus>
+    <label class="remember"><input type="checkbox" id="remember" checked> Remember me on this device</label>
+    <div class="err" id="err" role="alert"></div>
+    <button class="btn btn-navy" type="submit">Log in</button>
+  </form>
+  <p class="hint">Don&rsquo;t have the password? Ask your den leader or email <a href="mailto:pack96sms@gmail.com">pack96sms@gmail.com</a>.</p>
+</div>
+
+<div id="content" hidden>
+  <div class="members-nav">
+    <div class="wrap">
+      <a href="#calendar">Calendar</a>
+      <a href="#photos">Photos</a>
+      <a href="#announcements">Announcements</a>
+      <a href="#contacts">Contacts</a>
+      <a href="#documents">Documents</a>
+    </div>
+  </div>
+
+  <section id="calendar" style="padding-top:36px">
+    <div class="wrap">
+      <div class="callout" id="notes" hidden></div>
+      <h2>Pack Calendar</h2>
+      <div id="calendar-body">
+        <div class="toolbar">
+          <button class="btn btn-navy" data-mode="MONTH" type="button">Month</button>
+          <button class="btn btn-outline" data-mode="AGENDA" type="button">List</button>
+          <a class="btn btn-gold" id="cal-google" href="#" target="_blank" rel="noopener">+ Add to Google Calendar</a>
+        </div>
+        <iframe class="cal-frame" id="cal" title="Pack 96 calendar" loading="lazy"></iframe>
+        <p class="note" style="text-align:left;margin-top:10px">Apple Calendar or Outlook: subscribe to this address &mdash; <a id="cal-ical" href="#"><code id="cal-ical-text"></code></a>. On an iPhone: Settings &rarr; Calendar &rarr; Accounts &rarr; Add Account &rarr; Other &rarr; Add Subscribed Calendar, and paste it.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="alt" id="photos">
+    <div class="wrap">
+      <h2>Photos</h2>
+      <p>Pack photos live in a shared Google Photos album. Anyone with the link can view, and families can add their own pictures from events.</p>
+      <p><a class="btn btn-navy" id="photos-link" href="#" target="_blank" rel="noopener">Open the Pack 96 photo album</a></p>
+      <p class="note" style="text-align:left">Please don&rsquo;t share the album link outside Pack 96 families.</p>
+    </div>
+  </section>
+
+  <section id="announcements">
+    <div class="wrap">
+      <h2>Announcements</h2>
+      <iframe class="doc-frame" id="ann" title="Pack announcements" loading="lazy"></iframe>
+      <p class="note" style="text-align:left"><a id="ann-link" href="#" target="_blank" rel="noopener">Open in a new tab</a></p>
+    </div>
+  </section>
+
+  <section class="alt" id="contacts">
+    <div class="wrap">
+      <h2>Leaders &amp; Contacts</h2>
+      <p class="note" style="text-align:left" id="contacts-note">For Pack 96 families only. Please don&rsquo;t share outside the pack.</p>
+      <h3>Pack Leadership</h3>
+      <div class="people" id="pack-contacts"></div>
+      <h3 style="margin-top:24px">Den Leaders</h3>
+      <div class="people" id="den-contacts"></div>
+    </div>
+  </section>
+
+  <section id="documents">
+    <div class="wrap">
+      <h2>Documents &amp; Forms</h2>
+      <div class="link-list" id="docs"></div>
+    </div>
+  </section>
+</div>
+
+<footer>
+  <p><strong>Cub Scout Pack 96</strong> &middot; St. Michael School, Sharonville, Ohio</p>
+  <p>Dan Beard Council &middot; Scouting America</p>
+  <p>&copy; 2026 Pack 96 &middot; <a href="index.html">Home</a></p>
+</footer>
+
+<script src="config.js"></script>
+<script src="js/site.js"></script>
+<script src="js/crypto.js"></script>
+<script src="js/members.js"></script>
+</body>
+</html>

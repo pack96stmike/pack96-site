@@ -1,0 +1,5 @@
+# The plaintext members data never goes in the repo. Keep it in the Pack 96 Website Drive folder.
+private.json
+*.local.*
+.DS_Store
+Thumbs.db
