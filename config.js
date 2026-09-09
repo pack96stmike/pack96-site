@@ -5,7 +5,7 @@ window.PACK96 = {
 
   // The "Leadership" tab of the Pack 96 Site Content Google Sheet, published to the web as CSV.
   // Columns: Name, Role, Den. Leave "" to use fallbackLeaders below.
-  leadersCsvUrl: "",
+  leadersCsvUrl: "https://docs.google.com/spreadsheets/d/e/2PACX-1vQChEHV8nWW0phvIWo34ymJfOReKDjtM9v54IvoU0rqjvNILQKHZ6dgdXrh6NAzL37bKpUv78GQjuFz/pub?gid=0&single=true&output=csv",
 
   // Shown when leadersCsvUrl is empty or can't be reached. Keep it roughly current.
   fallbackLeaders: [
