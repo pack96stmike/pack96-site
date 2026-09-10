@@ -85,7 +85,6 @@
     // Documents folder (a link-shared Google Drive folder; lists itself and updates on its own)
     if (d.documentsFolderId) {
       document.getElementById("docs-folder").src = "https://drive.google.com/embeddedfolderview?id=" + encodeURIComponent(d.documentsFolderId) + "#list";
-      document.getElementById("docs-folder-link").href = "https://drive.google.com/drive/folders/" + encodeURIComponent(d.documentsFolderId);
     } else {
       document.getElementById("docs-folder-wrap").hidden = true;
       document.getElementById("docs-heading").hidden = true;
